@@ -1,1 +1,22 @@
 
+a1.sources=r1
+a1.channels=c1
+a1.sinks=s1
+a1.sources.r1.type=exec
+a1.sources.r1.command=tail -F home/centos/cow1.small.faa
+a1.sources.r1.channels=c1
+a1.channels.c1.type=memory
+a1.channels.c1.capacity=1000
+a1.channels.c1.transactionCapacity=100
+#a1.sinks.s1.type=kafka
+a1.sinks.s1.channel=c1
+a1.sinks.s1.type=org.apache.flume.sink.kafka.KafkaSink
+a1.sinks.s1.kafka.topic=topic1
+a1.sinks.s1.kafka.bootstrap.servers=192.168.20.199:39092, 192.168.20.199:39093, 192.168.20.199:39094
+a1.sinks.s1.flumeBatchSize=20
+a1.sinks.s1.kafka.producer.acks=1
+a1.sinks.s1.kafka.producer.linger.ms=1
+a1.sinks.s1.kafka.producer.compression.type=snappy
+log.retention.ms=1680000
+log.retention.minutes=16800
+log.retention.hours=168
